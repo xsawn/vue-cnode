@@ -13,6 +13,10 @@ let server = new devServer(webpack(devConfig), {
 		'/topics': {
 			target:'https://cnodejs.org/api/v1',
 			secure: false
+		},
+		'/accesstoken': {
+			target:'https://cnodejs.org/api/v1',
+			secure: false
 		}
 	}
 
