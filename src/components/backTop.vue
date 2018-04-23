@@ -15,7 +15,7 @@
 
 		methods: {
 			scroll(){
-				let pageScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				let pageScrollTop = this.getScrollTop();
 				if(pageScrollTop > 20) {
 					this.show = true
 				} else {
@@ -23,10 +23,12 @@
 				}
 			},
 			backTop() {
-				let pageScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-				document.documentElement.scrollTop = 0;
-				document.body.scrollTop = 0;
+				let pageScrollTop = this.getScrollTop();
+				window.scrollTo(0, 0)
 				this.show = false;
+			},
+			getScrollTop() {
+				return document.documentElement.scrollTop || document.body.scrollTop;
 			}
 		}
 	}

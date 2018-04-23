@@ -12,7 +12,8 @@
 	import backTop from './backTop';
 
 	import $ from 'jquery';
-
+	import _ from 'lodash';
+	let count = 0;
 	export default {
 		data() {
 			return {
@@ -34,7 +35,7 @@
 				let {page: _page, tab, limit, mdrender} = this.pageList;
 				return `page=${page || _page}&tab=${tab}&limit=${limit}&mdrender=${mdrender}`
 			},
-			scrollLoad() {
+			scrollLoad(e) {console.count('scroll', count++);console.log('事件对象', e)
 				if(this.isLoadingData) return;
 				let el = document.documentElement || document.body;
 				let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -58,7 +59,9 @@
 		},
 		mounted() {
 			this.loadData(undefined, true);
-			window.addEventListener('scroll', e => this.scrollLoad())
+			window.addEventListener('scroll', _.throttle(this.scrollLoad, 200))
+			// window.addEventListener('scroll', this.scrollLoad)
+			// 
 		},
 		watch: {
 			'$route': function(from, to) {
